@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المنيو الرقمي | PHANTOM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0b0c10;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--primary-white); overflow-x: hidden; min-height: 100vh; }
+        header {
+            background: rgba(11, 12, 16, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--card-border);
+        }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary-white); text-decoration: none; }
+        nav a { text-decoration: none; color: var(--text-muted); margin-right: 30px; font-weight: 500; transition: all 0.4s ease; position: relative; }
+        nav a:hover, nav a.active { color: var(--primary-white); }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--primary-white); transition: width 0.3s ease; }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        
+        .filter-container { padding: 40px 8% 20px 8%; text-align: center; }
+        .filter-btn { background: transparent; color: var(--text-muted); border: 1px solid var(--card-border); padding: 10px 25px; margin: 5px; border-radius: 30px; cursor: pointer; font-weight: 500; font-size: 14px; transition: all 0.3s ease; }
+        .filter-btn:hover, .filter-btn.active { background: var(--primary-white); color: #000000; border-color: transparent; box-shadow: 0 0 15px rgba(255,255,255,0.15); }
+        
+        .menu-grid { padding: 20px 8% 80px 8%; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .menu-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px; overflow: hidden; display: block; transition: all 0.4s ease; }
+        .menu-item.hide { display: none; }
+        .img-box { width: 100%; height: 220px; overflow: hidden; }
+        .img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .menu-item:hover img { transform: scale(1.06); }
+        .item-details { padding: 20px; text-align: right; }
+        .item-details h3 { font-size: 19px; margin-bottom: 8px; }
+        .item-details p { color: var(--text-muted); font-size: 13px; line-height: 1.6; margin-bottom: 15px; }
+        .item-footer { display: flex; justify-content: space-between; align-items: center; }
+        .item-price { font-size: 18px; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Home Page.html" class="logo">PHANTOM</a>
+        <nav>
+            <a href="Home Page.html">الرئيسية</a>
+            <a href="menu.html" class="active">المنيو الرقمي</a>
+            <a href="about.html">تجربتنا</a>
+            <a href="contact.html">اتصل بنا</a>
+        </nav>
+    </header>
+
+    <div class="filter-container">
+        <button class="filter-btn active" data-category="all">الكل</button>
+        <button class="filter-btn" data-category="burgers">برجر</button>
+        <button class="filter-btn" data-category="pizza">بيتزا</button>
+        <button class="filter-btn" data-category="drinks">مشروبات</button>
+    </div>
+
+    <div class="menu-grid">
+        <div class="menu-item" data-category="burgers">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=500" alt="برجر"></div>
+            <div class="item-details">
+                <h3>فانتوم برجر سموكي</h3>
+                <p>أنجوس برجر معتق مدخن بخشب الأرز الفاخر مع الجبن السويسري.</p>
+                <div class="item-footer"><span class="item-price">6.75 د.أ</span></div>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pizza">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500" alt="بيتزا"></div>
+            <div class="item-details">
+                <h3>تروفل بيتزا فاخرة</h3>
+                <p>عجينة سوداء خفيفة تعلوها الكريمة الإيطالية الفاخرة والموزاريلا.</p>
+                <div class="item-footer"><span class="item-price">8.50 د.أ</span></div>
+            </div>
+        </div>
+        <div class="menu-item" data-category="drinks">
+            <div class="img-box"><img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=500" alt="مشروب"></div>
+            <div class="item-details">
+                <h3>موجيتو الفواكه الاستوائية</h3>
+                <p>مزيج منعش من التوت البري والنعناع الفريش مع نكهة فانتوم الخاصة.</p>
+                <div class="item-footer"><span class="item-price">3.25 د.أ</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const menuItems = document.querySelectorAll('.menu-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const category = button.getAttribute('data-category');
+
+                menuItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.classList.remove('hide');
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

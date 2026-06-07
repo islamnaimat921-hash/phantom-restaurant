@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم فانتوم | الرئيسية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --bg-dark: #0b0c10;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --primary-white: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.6);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            color: var(--primary-white); overflow-x: hidden; min-height: 100vh;
+        }
+        header {
+            background: rgba(11, 12, 16, 0.7); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid var(--card-border);
+        }
+        .logo { font-size: 24px; font-weight: 900; color: var(--primary-white); letter-spacing: 1px; text-decoration: none; }
+        nav a { text-decoration: none; color: var(--text-muted); margin-right: 30px; font-weight: 500; transition: all 0.4s ease; position: relative; }
+        nav a:hover, nav a.active { color: var(--primary-white); }
+        nav a::after { content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--primary-white); transition: width 0.3s ease; }
+        nav a:hover::after, nav a.active::after { width: 100%; }
+        .hero {
+            position: relative; height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+            background: linear-gradient(to bottom, rgba(11,12,16,0.4), var(--bg-dark)), url('https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1400') no-repeat center center/cover;
+        }
+        .hero h1 { font-size: 55px; font-weight: 900; margin-bottom: 20px; line-height: 1.4; color: var(--primary-white); }
+        .hero p { font-size: 20px; color: var(--text-muted); margin-bottom: 40px; max-width: 700px; font-weight: 300; }
+        .btn-modern { background: var(--primary-white); color: #000000; padding: 14px 40px; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; font-weight: 700; transition: all 0.4s ease; box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); text-decoration: none; display: inline-block; }
+        .btn-modern:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255, 255, 255, 0.25); }
+        .menu-section { padding: 80px 8%; text-align: center; }
+        .section-title h2 { font-size: 36px; font-weight: 900; margin-bottom: 15px; color: var(--primary-white); }
+        .section-title p { color: var(--text-muted); margin-bottom: 60px; font-size: 16px; font-weight: 300; }
+        .food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .food-card { background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 16px; overflow: hidden; transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); position: relative; opacity: 0; transform: translateY(40px); }
+        .food-card:hover { transform: translateY(-10px); border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 15px 35px rgba(255, 255, 255, 0.05); }
+        .img-container { width: 100%; height: 240px; overflow: hidden; position: relative; }
+        .food-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .food-card:hover .food-img { transform: scale(1.08); }
+        .badge { position: absolute; top: 15px; right: 15px; background: rgba(0, 0, 0, 0.7); border: 1px solid var(--card-border); color: var(--primary-white); padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 500; }
+        .food-info { padding: 25px; text-align: right; }
+        .food-info h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; color: var(--primary-white); }
+        .food-info p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin-bottom: 25px; height: 45px; overflow: hidden; }
+        .food-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--card-border); padding-top: 15px; }
+        .price { font-size: 20px; font-weight: 700; color: var(--primary-white); }
+        .add-btn { background: transparent; color: var(--primary-white); border: 1px solid var(--card-border); width: 40px; height: 40px; border-radius: 8px; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; }
+        .food-card:hover .add-btn { background: var(--primary-white); color: #000000; border-color: transparent; }
+        .card-animate { opacity: 1; transform: translateY(0); transition: opacity 0.8s ease, transform 0.8s ease; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Home Page.html" class="logo">PHANTOM</a>
+        <nav>
+            <a href="Home Page.html" class="active">الرئيسية</a>
+            <a href="menu.html">المنيو الرقمي</a>
+            <a href="about.html">تجربتنا</a>
+            <a href="contact.html">اتصل بنا</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 class="animate__animated animate__fadeInDown">نصنع الطهي بشغف مطلق</h1>
+        <p class="animate__animated animate__fadeInUp animate__delay-1s">اكسر روتين الأكل التقليدي، واكتشف قائمة طعام مصممة بمفهوم يدمج بين الفخامة والابتكار المذهل.</p>
+        <a href="menu.html" class="btn-modern animate__animated animate__zoomIn animate__delay-2s">استكشف المنيو الحصري</a>
+    </section>
+
+    <section class="menu-section">
+        <div class="section-title">
+            <h2>أصناف نوصي بها</h2>
+            <p class="subtitle">روائع مجهزة خصيصاً لتمنحك متعة بصرية وتذوقية لا تُنسى</p>
+        </div>
+        <div class="food-grid">
+            <div class="food-card">
+                <div class="img-container"><span class="badge">الأكثر طلباً</span><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=500" alt="برجر" class="food-img"></div>
+                <div class="food-info">
+                    <h3>فانتوم برجر سموكي</h3>
+                    <p>أنجوس برجر معتق مدخن بخشب الأرز، يقدم مع طبقات الجبن السويسري المذاب.</p>
+                    <div class="food-footer"><span class="price">6.75 د.أ</span><button class="add-btn">+</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="img-container"><span class="badge">طبق الشيف</span><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=500" alt="بيتزا" class="food-img"></div>
+                <div class="food-info">
+                    <h3>تروفل بيتزا فاخرة</h3>
+                    <p>عجينة سوداء كربونية خفيفة، تعلوها كريمة التروفل الإيطالية وقطع الموزاريلا الطازجة.</p>
+                    <div class="food-footer"><span class="price">8.50 د.أ</span><button class="add-btn">+</button></div>
+                </div>
+            </div>
+            <div class="food-card">
+                <div class="img-container"><span class="badge">طازج</span><img src="https://images.unsplash.com/photo-1621996346565-e3bb64635935?q=80&w=500" alt="باستا" class="food-img"></div>
+                <div class="food-info">
+                    <h3>باستا الزعفران البحري</h3>
+                    <p>باستا سوداء بحبر الحبار مطبوخة بصوص الزعفران الملكي الفاخر وثمار البحر الاستوائية.</p>
+                    <div class="food-footer"><span class="price">9.20 د.أ</span><button class="add-btn">+</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.food-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => { card.classList.add('card-animate'); }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
